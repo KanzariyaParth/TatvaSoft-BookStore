@@ -1,0 +1,60 @@
+.container-center{
+    text-align: center;
+}
+
+.txt-lb {    font-weight: 500;   }
+
+.txt-41 {   color: #414141;   }
+
+.txt-83 {   color: #838383;   }
+
+.txt-21 {   color: #212121;   }
+
+.txt-92 {    color: #929292;   }
+
+
+.ff-r {    font-family: Roboto,sans-serif;   }
+
+.ff-r-l {    font-family: Roboto-light,sans-serif;   }
+
+/* variant="contained" btn */
+.bg-f14d54 {    background-color:#f14d54 !important;   }
+    .f1-btn-hover:hover {    background-color:#ff101b !important;    }
+
+
+/* variant="outlined" btn */
+.c-f14d54 {    color:#f14d54 !important;   }
+    .b-f14d54 {    border-color: #f14d54 !important;   }
+
+
+/* search btn */
+.bg-search {    background-color: #80BF32 !important;   }
+
+
+/* edit book btn */
+.c-80bf32 {   color: #80bf32 !important;   }
+    .bo-80bf32{   border-color: #80BF32 !important;   }
+        .c-80bf32:hover{   color: white !important; background-color: #80BF32 !important;   }
+
+
+/* delete book btn */
+.delete-btn-color {   color: #f14d54 !important;   }
+    .delete-btn-border {   border-color: #f14d54 !important;   }
+        .delete-btn-color:hover {   color: white !important; background-color: #f14d54 !important;   }
+
+
+/* universal save btn */
+.uni-save-btn{
+    background-color: #80BF32 !important;
+}
+
+
+/* universal delete btn */
+.uni-delete-btn{
+    background-color: #f14d54 !important;
+}
+
+/* for universal scrollbar */
+::-webkit-scrollbar{
+    width: 0px;
+}

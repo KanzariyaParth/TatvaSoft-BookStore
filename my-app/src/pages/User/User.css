@@ -1,0 +1,55 @@
+.u-container-center{
+    margin-top: 50px;
+    text-align: center;
+}
+.u-container-center h1{
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+.u-container-center hr{
+    width: 12%;
+    border: 1px solid #f15d54;
+    margin-bottom: 50px;
+}
+
+.u-container-main{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+    .u-search-user{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-bottom: 22px;
+    }
+        .u-search-bar{ /*search-bar TextField */
+            width: 25%;
+        }
+            .u-search-bar .MuiTextField-root{
+                width: 100%;
+            }
+                .u-search-bar .MuiTextField-root input{
+                    padding: 7px 10px 7px 15px;
+                }
+
+.u-container-table{
+    box-sizing: border-box;
+}
+
+    .u-edit-delete-btn{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+        /* .u-edit-btn{
+            
+        } */
+        .u-delete-btn{
+            margin-left: 10px;
+        }
+
+.u-pagination{
+    text-align: -webkit-right;
+}

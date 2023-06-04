@@ -1,0 +1,105 @@
+.l-breadcrump-center{
+    padding: 50px 0;
+}
+.l-breadcrump-center a{
+    text-decoration: none;
+}
+.l-breadcrump-center ol{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    justify-content: center;
+}
+
+/* for login and create */
+.l-container-center{
+    text-align: center;
+}
+.l-container-center h1{
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+.l-container-center hr{
+    width: 12%;
+    border: 1px solid #f15d54;
+    margin-bottom: 50px;
+}
+
+/* for form head */
+.l-frm-head{
+    margin-right: auto;
+    margin-left: auto;
+    width:70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+    .l-frm-head-1{
+
+        /* border: 1px solid black; */
+
+        width: 48%;
+        height: auto;
+        
+    }
+
+        .l-new-customer{
+            width: 100%;
+        }
+        .l-new-info p{
+            margin: 20px 0;
+        }
+        .l-info-lst ul{
+            padding-left: 17px;
+        }
+        .l-login-btn{
+            margin-top: 131.5px;
+        }
+
+
+    .l-frm-head-2{
+
+        /* border: 1px solid black; */
+
+        width: 48%;
+        height: auto;
+    }
+
+        .l-reg-customer{
+            width: 100%;
+        }
+        .l-reg-info{
+            margin: 20px 0;
+        }
+        .l-frm-container{
+            margin: 0;
+            padding: 0;
+        }
+
+            .l-err-container-1{
+                margin-top: 15px;
+                width: 75%;
+            }
+                .l-eml{
+                    width: 100%;
+                }
+                .l-err-msg{  /* common for l-err-container-1 & l-err-container-2*/
+                    color: red;
+                    padding: 0;
+                    margin: 3px 0 0 0;
+                    font-size: small;
+                    position: absolute;
+                }
+
+            .l-err-container-2{
+                margin-top: 40px;
+                width: 75%;
+            }
+                .l-pwd{
+                    width: 100%;
+                }
+
+            .l-submit-btn{
+                margin-top: 60px;
+            }

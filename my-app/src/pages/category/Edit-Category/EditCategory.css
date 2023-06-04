@@ -1,0 +1,47 @@
+.edit-category-container-center{
+    margin-top: 50px;
+    text-align: center;
+}
+.edit-category-container-center h1{
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+.edit-category-container-center hr{
+    width: 12%;
+    border: 1px solid #f15d54;
+    margin-bottom: 50px;
+}
+
+.edit-category-container-main{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+    /* .edit-category-frm-container{
+
+    } */
+        .edit-category-txt-field-1{
+            width: 47%;
+        }
+            .edit-category-txt-field-1 .MuiTextField-root{
+                width: 100%;
+            }
+
+        .edit-category-save-cancel-btn{
+            margin-top: 60px;
+        }
+            .edit-category-custom-save{
+                margin: 0 !important;
+            }
+            .edit-category-custom-delete{
+                margin-top: 0 !important;
+            }
+
+.edit-category-err-msg{
+    position: absolute;
+    color: red;
+    padding: 0;
+    margin: 3px 0 0 0;
+    font-size: small;
+}

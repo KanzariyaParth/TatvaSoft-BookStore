@@ -1,0 +1,48 @@
+.update-profile-container-center{
+    margin-top: 50px;
+    text-align: center;
+}
+.update-profile-container-center h1{
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+.update-profile-container-center hr{
+    width: 12%;
+    border: 1px solid #f15d54;
+    margin-bottom: 50px;
+}
+
+.update-profile-container-main{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+    .update-profile-frm-container form{
+        display: flex;
+        flex-direction: column;
+    }
+        .update-profile-2in1{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+            .update-profile-err-container{
+                width: 47%;
+            }
+                .update-profile-err-container .MuiFormControl-root{
+                    width: 100%;
+                    margin: 0;
+                }
+
+
+
+
+.update-profile-err-msg{
+    position: absolute;
+    color: red;
+    padding: 0;
+    margin: 3px 0 0 0;
+    font-size: small;
+}              

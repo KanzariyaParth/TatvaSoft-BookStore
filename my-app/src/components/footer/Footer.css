@@ -1,0 +1,23 @@
+.f-container{
+    text-align: center;
+    height: 170px;
+    background-color: #F4F4F4;
+    margin-top: 80px;
+    box-sizing: border-box;
+}
+
+.f-container p{
+    margin: 15px 0 0 0;
+}
+
+.f-wrapper{
+    padding-top: 3%;
+}
+
+.f-tt-logo{
+    width: 13%;
+}
+
+.f-copy-rights{
+    font-size: small;
+}

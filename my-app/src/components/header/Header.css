@@ -1,0 +1,182 @@
+.h-container{    
+    height:92px;
+}
+
+.h-container-wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 1%;
+}
+
+/* .h-navigation-temp{
+    width: 100%;
+} */
+
+.h-tt-logo{ /* in h-container-lft*/
+    width: 60%;
+}
+
+.h-container-rght{
+    display: flex;
+    flex-direction: row;
+    width: auto; /* 25 */
+    justify-content: space-between;
+}
+.h-container-rght .h-rght-cart{
+    margin: 0 10px;
+}
+
+/* for search bar bg */
+
+.h-searchbar{
+    height: 80px;
+    background-color: #F4F4F4;
+}
+
+    .h-searchbar-center{
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        width: 50%;
+        height: 50%;
+        justify-content: space-evenly;
+        padding-top: 20px;
+    }
+
+        .h-txtfield{
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+        }
+        .h-txtfield .MuiOutlinedInput-input{
+            padding: 8px 10px 8px 15px;
+            background-color: white;
+        }
+        .h-txtfield .MuiInputBase-formControl{
+            width: auto;
+        }
+
+            /* only for searching*/
+
+            .h-product-list{
+                height: auto;
+                border-radius: 4px;
+            }
+                .h-no-prod, .h-related-product-list{
+                    background-color: #FFFFFF;    
+                    box-shadow: 0.5px 0.5px 4px 0.5px #838383;
+                    border-radius: 4px;
+                    z-index: 1;
+                }
+
+                    .h-no-prod .h-not-found{
+                        padding: 15px;
+                        margin: 0;
+                    }
+
+                    .h-product-list-inner{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    }
+                        .h-inner-lft{
+                            width: 75%;
+                        }
+                        .h-inner-rght{
+                            width: 25%;
+                            padding-right: 5px;
+                        }
+
+
+ /* to remove default padding in ul */
+ .h-product-list .MuiList-padding {  padding: 0;  }
+
+
+/* to give manual padding between searched item in list */
+.h-product-list .MuiListItem-padding {  padding: 8px 16px;  }
+
+
+/*  ==> to differentiate list items fater search 
+    .h-product-list ul li{  ==> to differentiate list items fater search
+        border-bottom: 1px solid black;
+    }
+==> to remove border of a last list element
+    .h-product-list ul li:last-child{
+        border-bottom: none;
+    } 
+*/
+
+
+/* for descreption to be displayed of max-2 lines*/
+
+.h-product-list .MuiListItem-padding p{
+    color: #838383;/* --> to give bg for decreption */
+    margin: 5px 0 0 0;
+    /* white-space: nowrap; ==> to get content in single line*/
+    
+    /* ==> pre requirment for '-webkit-line-clamp' */
+    display: -webkit-box;       
+    -webkit-box-orient: vertical;
+    /* <== pre requirment for '-webkit-line-clamp' */
+
+    -webkit-line-clamp: 2; /* --> no of line to be displayed */
+
+    overflow: hidden; /* -->  to hide an overflow */
+    text-overflow: ellipsis; /* --> to show (...) after text overflow */
+}
+
+
+.h-product-list ul{
+    width: 100%; /* --> to show searched items in prefreable way */
+    max-height: 365px; 
+    overflow: auto; /* --> to make content scrollable in max-height*/
+}
+
+.h-inner-rght span, .h-inner-rght button{
+    float: right; /* --> to display price in right */
+}
+.h-inner-rght button{
+    padding: 4px 0 0 0;
+}
+
+/* <== st Scroll-bar in list select */
+    ul::-webkit-scrollbar{
+        width: 7px;
+        /* border-left: 1px solid lightgray; */
+    }
+    ul::-webkit-scrollbar-thumb{
+        background-color: #e04d54;
+    }
+    ul::-webkit-scrollbar-thumb:hover{
+        background-color: #f14d54;
+    }
+    ul::-webkit-scrollbar-track{
+        box-shadow: inset 0 0 10px -7px;
+        border-radius: 5px;
+    }
+    ul::-webkit-scrollbar,ul::-webkit-scrollbar-thumb{
+        border-radius: 5px;
+    }
+/* <== nd Scroll-bar */
+
+
+/*for out-side clicking */
+
+.search-result-open .search-overlay{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.search-overlay{
+    display: none;
+}

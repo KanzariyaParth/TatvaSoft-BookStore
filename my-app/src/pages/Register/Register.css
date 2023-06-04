@@ -1,0 +1,111 @@
+.r-breadcrump-center{
+    padding: 50px 0;
+}
+.r-breadcrump-center a{
+    text-decoration: none;
+}
+.r-breadcrump-center ol{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    justify-content: center;
+}
+
+.r-container-center{
+    text-align: center;
+}
+
+.r-container-center h1{
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+.r-container-center hr{
+    width: 12%;
+    border: 1px solid #f15d54;
+    margin-bottom: 50px;
+}
+
+.r-personal-reg-info{
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.r-frm-info{
+    margin: 20px 0;
+    font-size: 15px;
+}
+
+.r-frm-container{
+    width:100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.r-2in1-0{
+    display: flex;
+    padding-top: 10px;
+}
+    .r-1of2-0{  width: 90%; }
+    .r-2of2-0{  width: 90%; }
+
+/* for space in r-2in1 --------------> nakamu
+.r-2in1 .MuiTextField-root{
+    padding-right: 7% !important;
+} */
+
+.r-2in1-1{
+    display: flex;
+    padding-top: 40px;
+}
+    .r-1of2-1{  width: 90%; }
+    .r-2of2-1{  width: 90%; margin: 0 !important;}
+
+/* .r-eml-p{
+    padding-top: 40px;
+}
+.r-eml{
+    width: 100%;
+} */
+
+.r-linfo{
+    padding-top: 70px;
+}
+
+.r-2in1-2{
+    display: flex;
+    padding-top: 40px;
+}
+    .r-1of2-2{  width: 90%; }
+    .r-2of2-2{  width: 90%; }
+
+/* to display an error    st */
+
+.r-2in1-x-err{  
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.r-err-msg{
+    position: absolute;
+    color: red;
+    padding: 0;
+    margin: 3px 0 0 0;
+    font-size: small;
+}
+
+/* nd */
+
+.r-submit-btn{
+    margin-top: 60px;
+}
+
+/* .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper .css-6hp17o-MuiList-root-MuiMenu-list .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+    width: 330px;
+} */
+
+.r-1of2-1 .css-1869usk-MuiFormControl-root{
+    margin: 0;
+}

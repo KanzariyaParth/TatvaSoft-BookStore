@@ -1,0 +1,64 @@
+.book-container-center{
+    margin-top: 50px;
+    text-align: center;
+}
+.book-container-center h1{  
+margin: 0 0 15px 0;
+font-size: 32px;
+}
+.book-container-center hr{
+width: 12%;
+border: 1px solid #f15d54;
+margin-bottom: 50px;
+}
+
+.book-container-main{
+margin-left: auto;
+margin-right: auto;
+width: 75%;
+}
+
+.book-search-product{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 22px;
+}
+    .book-search-bar{ /*search-bar TextField */
+        width: 25%;
+    }
+        .book-search-bar .MuiTextField-root{
+            width: 100%;
+        }
+            .book-search-bar .MuiTextField-root input{
+                padding: 7px 10px 7px 15px;
+            }
+    
+    .book-add-btn{
+        margin-left: 1%;
+    }
+        .book-add-btn .book-add-btn-txt{
+            margin: auto 10px;
+        }
+        
+
+
+.book-container-table{
+box-sizing: border-box;
+}
+
+.book-edit-delete-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+    .book-edit-btn{
+        margin-right: 10px;
+    }
+    /* .book-delete-btn{
+
+    } */
+
+.book-pagination{
+text-align: -webkit-right;
+}
