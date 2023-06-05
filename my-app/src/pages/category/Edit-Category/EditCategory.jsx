@@ -17,7 +17,9 @@ const EditCategory = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        if (id) getCategoryById();
+        if(id){
+            getCategoryById();
+        }
     }, [id])
 
     const getCategoryById = () => {
@@ -42,7 +44,7 @@ const EditCategory = () => {
             .then((res) => {
                 toast.success(messages.UPDATED_SUCCESS, { theme: 'colored' });
                 navigate('/category');
-            }) .catch((e) => {
+            }).catch((e) => {
                 toast.error(messages.UPDATED_FAIL, { theme: 'colored' });
             })
     };

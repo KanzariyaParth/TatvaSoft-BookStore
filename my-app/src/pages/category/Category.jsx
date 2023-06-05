@@ -56,7 +56,7 @@ const Category = () => {
             toast.success(messages.DELETE_SUCCESS, { theme:'colored' })
             setOpen(false);
             setFilters({ ...filters });
-        }) .catch((e) => {
+        }).catch((e) => {
             toast.error(messages.DELETE_FAIL, { theme: 'colored' })
         });
     };

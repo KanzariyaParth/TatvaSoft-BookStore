@@ -18,7 +18,7 @@ const getAllUsers = async (params) => {
 };
 
 const deleteUser = async (id) => {
-    const url = `${ENDPOINT}/Delete?id=${id}`;
+    const url = `${ENDPOINT}?id=${id}`;
     return request.delete(url).then((res) => {
         return res;
     });

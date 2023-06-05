@@ -69,7 +69,7 @@ function Register()
 
     const onSubmit = (data) => {
         delete data.confirm_password;
-        alert(JSON.stringify(data))
+        // alert(JSON.stringify(data))
         authService
             .create(data)
             .then((res) => {
@@ -86,8 +86,6 @@ function Register()
         validationSchema: signUpSchema,
         onSubmit: onSubmit,
     });
-    
-    // console.log( errors )    // but gis will
 
     /* nd */
 
@@ -104,15 +102,6 @@ function Register()
     useEffect(() =>{
         getRoles();
     }, [])
-
-    // useEffect(() => { // for testing api
-        // toast.success("Success");
-    //     axios.get('https://jsonplaceholder.typicodee.com/posts').then((data)=> {
-    //         console.log(data.data)
-    //     }).catch((error) => {
-    //         console.log(error)
-    //     })
-    // }, [])
 
    /* api nd */
 
@@ -162,7 +151,7 @@ function Register()
                                     />
                                 </div>
                                 <div>
-                                    {<p className="r-err-msg"> {/*errors.firstName &&*/ touched.firstName && errors.firstName} </p>}
+                                    {<p className="r-err-msg"> {touched.firstName && errors.firstName} </p>}
                                 </div>
                             </div>
 
@@ -181,7 +170,7 @@ function Register()
                                     /> 
                                 </div>
                                 <div>
-                                    {<p className="r-err-msg"> {/*errors.lastName &&*/touched.lastName && errors.lastName} </p>}
+                                    {<p className="r-err-msg"> {touched.lastName && errors.lastName} </p>}
                                 </div>
                             </div>
                         </div>
@@ -202,7 +191,7 @@ function Register()
                                     />
                                 </div>
                                 <div>
-                                    {<p className="r-err-msg"> {errors.email} </p>}
+                                    {<p className="r-err-msg"> {touched.email && errors.email} </p>}
                                 </div>
                             </div>
                             <div className="r-2in1-x-err">
@@ -235,7 +224,7 @@ function Register()
                                     </FormControl>
                                 </div>
                                 <div>
-                                    {<p className="r-err-msg"> {/*errors.roleId*/ touched.roleId && errors.roleId} </p>}
+                                    {<p className="r-err-msg"> {touched.roleId && errors.roleId} </p>}
                                 </div>
                             </div>
                         </div>
@@ -260,7 +249,7 @@ function Register()
                                     />
                                 </div>
                                 <div>
-                                    {<p className="r-err-msg"> {/*errors.password*/ touched.password && errors.password} </p>}
+                                    {<p className="r-err-msg"> {touched.password && errors.password} </p>}
                                 </div>
                             </div>
 

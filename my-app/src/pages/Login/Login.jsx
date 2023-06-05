@@ -30,7 +30,7 @@ function Login() {
     const authContext = useAuthContext(); //----------------------------------------------------
 
     const initialValues = {
-        email: "admin@tatvasoft.com",
+        email: "",
         password: "",
     }
 

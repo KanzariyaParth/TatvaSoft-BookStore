@@ -191,7 +191,12 @@ const UpdateProfile = () => {
 
                                         name='newPassword'
                                         values={ values.newPassword } 
-                                        onChange={ handleChange }
+                                        onChange={(e) => {
+                                            e.target.value !== ""
+                                              ? setupdatePassword(true)
+                                              : setupdatePassword(false);
+                                            handleChange(e);
+                                          }}
                                         onBlur={ handleBlur }
 
                                         endAdornment={

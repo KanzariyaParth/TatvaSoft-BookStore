@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import './Header.css';
 import { Button, ButtonGroup, List, ListItem, TextField } from '@mui/material';
 import { addIcon } from "../../assets";
-// import { Autocomplete, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -12,13 +11,18 @@ import bookService from "../../service/book.service";
 /* st api for search */
 
 import { useAuthContext } from "../../context/auth"; //----------------------------------------------------
-import { NavigationItems } from "../../utils/shared";
-// import { RoutePaths } from "../utils/enum";
+import { NavigationItems, addtoCart } from "../../utils/shared";
+import { RoutePaths } from "../../utils/enum";
+import { toast } from "react-toastify";
+import { useCartContext } from "../../context/cart";
  
 function Header() {
 
-    const authContext = useAuthContext(); //----------------------------------------------------
+    const authContext = useAuthContext(); 
+    const cartContext = useCartContext();
     const navigate = useNavigate();
+
+    //----------------------------------------------------
 
     const handlelogout = () => {
         authContext.signOut() //--------------------------------------------
@@ -60,25 +64,30 @@ function Header() {
         );
     }, [authContext.user])
 
+    const addToCart = (book) => {
+        if(!authContext.user.id) {
+            navigate(RoutePaths.Login);
+            toast.error("Please Login before adding books to cart", { theme: 'colored' });
+        } else {
+            addtoCart(book, authContext.user.id).then((res) => {
+                if(res.error) {
+                    toast.error(res.error, {theme: 'colored'});
+                } else {
+                    toast.success("Item added in cart", { theme: 'colored' });
+                    cartContext.updateCart();
+                }
+            })
+        }
+    }
+
 
     return(
         <>
-
-        {/* st temporary */}
-        {/* <div className="h-navigation-temp">
-                <ul className="h-ul">
-                    <li><Link to="/home"><Button>Home</Button></Link></li>
-                    <li><Link to='/product'><Button> Product </Button></Link></li>
-                    <li><Link to='/login'><Button> Login </Button></Link></li>
-                    <li><Link to='/register'><Button> Register </Button></Link></li>
-                </ul>
-        </div> */}
-        {/* nd temporary */}
         
         <div className="h-container">
             <div className="h-container-wrapper">
                 <div className="h-container-lft">
-                    <Link to='/home'>
+                    <Link to='/'>
                         <img 
                             src={addIcon} 
                             className="h-tt-logo" 
@@ -166,7 +175,7 @@ function Header() {
                                 className="c-f14d54 b-f14d54"
                                 startIcon={<ShoppingCartIcon />}
                             >
-                                {0} Cart 
+                                {cartContext.cartData.length} Cart
                             </Button>
                         </Link>
                     </div>
@@ -241,6 +250,7 @@ function Header() {
                                                     <Button
                                                         size="small"
                                                         className="c-f14d54"
+                                                        onClick={() => addToCart(item)}
                                                     >
                                                         Add to Cart
                                                     </Button>

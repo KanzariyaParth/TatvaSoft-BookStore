@@ -44,7 +44,7 @@ const EditUser = () => {
                 lastName: user.lastName,
                 firstName: user.firstName,
                 roleId,
-                password: user.password,  // ask sir ...
+                // password: user.password,  // ----
             })
         }
     }, [user, roles]);
@@ -84,7 +84,7 @@ const EditUser = () => {
                     toast.success(messages.UPDATED_SUCCESS, { theme: 'colored' } )
                     navigate('/user')
                 }
-            }) .catch((e) => {
+            }).catch((e) => {
                 toast.error(messages.UPDATED_FAIL, { theme: 'colored' } )
             })
     };

@@ -111,16 +111,18 @@ function Navigation (){
                     exact
                     path={RoutePaths.UpdateProfile}  
                     element={
-                        // authContext.user.id ? 
-                        <UpdateProfile /> 
-                        // : redirect
+                        authContext.user.id ? <UpdateProfile /> : redirect
                     }
                 />
-                {/* ----------------- upper part updated ----------------- */}
 
                 <Route 
-                    path='/cart' 
-                    Component={Cart} 
+                    exact
+                    path={RoutePaths.Cart} 
+                    element={
+                        // authContext.user.id ? 
+                        <Cart /> 
+                        // : redirect
+                    }
                 />
             </Routes>
 

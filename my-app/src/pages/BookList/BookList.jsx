@@ -1,21 +1,23 @@
 import React, { useEffect, useMemo, useState } from "react";
 import './BookList.css'
 import { Button, FormControl, InputLabel, MenuItem, Pagination, Select, TextField } from "@mui/material";
-// import { NavigationItems } from "../utils/shared";
-// import { AuthContext, useAuthContext } from "../context/auth";
 
-//----------------------------------------------------- api work
 
 import { defaultFilter } from "../../constant/constant";
 import categoryService from "../../service/catagory.service";
 import bookService from "../../service/book.service";
+import { addtoCart } from "../../utils/shared";
+import { useAuthContext } from "../../context/auth";
+import { toast } from "react-toastify";
+import { useCartContext } from "../../context/cart";
 
-//-----------------------------------------------------
 
 const BookList = () => {
 
 //----------------------------------------------------- api work -- st
 
+    const authContext = useAuthContext();
+    const cartContext = useCartContext();
     const [bookResponse, setBookResponse] = useState({
         pageIndex: 0,
         PageSize: 10,
@@ -43,6 +45,7 @@ const BookList = () => {
 
     //-------------------------- nd
 
+
     //-------------------------- st --- to search book with onChange in TextField 
 
     useEffect(() => {
@@ -62,6 +65,7 @@ const BookList = () => {
 
     //-------------------------- nd
 
+
     //-------------------------- st --- to set category in bookResponse
 
     const books = useMemo(() => {
@@ -74,10 +78,11 @@ const BookList = () => {
         });
         return bookList;
         }
-        return []; //---------------------  why? -> to return empty list
+        return [];
     }, [categories, bookResponse]);
 
     //-------------------------- nd
+
 
     //-------------------------- st ---  for sorting books
 
@@ -102,13 +107,24 @@ const BookList = () => {
         setBookResponse({ ...bookResponse, items: bookList });
     };
 
-
-    // temporary
-    // const SoartBooks = () => {
-    //     alert("I called")
-    // }
-
     //-------------------------- nd
+
+
+    //--------------------------------------------st addToCart
+
+    const addToCart = (book) => {
+        /* from shared.jsx */
+        addtoCart(book, authContext.user.id).then((res) => {
+            if (res.error) {
+                toast.error(res.message, { theme: 'colored' })
+            } else {
+                toast.success(res.message, { theme: 'colored' })
+                cartContext.updateCart();
+            }
+        });
+    };
+
+    //--------------------------------------------nd addToCart
     
 //----------------------------------------------------- api work -- nd
     
@@ -213,6 +229,7 @@ const BookList = () => {
                                         <Button
                                             variant="contained"
                                             className="bg-f14d54 f1-btn-hover"
+                                            onClick={() => addToCart(book)}
                                         >
                                             Add to Cart
                                         </Button>

@@ -6,7 +6,7 @@ import React, {
     } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RoutePaths } from "../utils/enum";
-import { hasAccess, LocalStorageKeys, /* NavigationItems */ } from "../utils/shared";
+import { hasAccess, LocalStorageKeys } from "../utils/shared";
 import { toast } from "react-toastify";
 
 
@@ -73,7 +73,6 @@ export const AuthWrapper = ({ children }) => {
           return;
         }
         // setAppInitialize(true);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [pathname, user]);
 
 
