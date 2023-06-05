@@ -229,59 +229,6 @@ function Cart() {
                             </div>
                         </div>
                     )})}
-
-                    {/* <div className="cart-container-product">
-
-                        <div className="cart-container-product-lft">
-
-                            <img 
-                                src="https://source.unsplash.com/random/900×700/?book"
-                                alt="Image"
-                            />
-
-                        </div>
-
-                        <div className="cart-container-product-middle">
-
-                            <div className="cart-product-name">
-                                <h4 className="txt-lb"> Product Name </h4>
-                            </div>
-
-                            <div className="cart-product-link">
-                                <Link> 
-                                    Cart item name
-                                </Link>
-                            </div>
-
-                            <div className="cart-product-inc-dec-btn">
-                                <Button
-                                    variant="contained"
-                                    className="bg-f14d54 f1-btn-hover"    
-                                >
-                                    +
-                                </Button>
-
-                                <span> 0 </span>
-
-                                <Button
-                                    variant="contained"
-                                    className="bg-f14d54 f1-btn-hover"    
-                                >
-                                    -
-                                </Button>
-                            </div>
-
-                        </div>
-                        
-                        <div className="cart-container-product-rght">
-                            <h4 className="txt-lb"> MRP (price here) </h4>
-                            
-                            <Link>
-                                Remove
-                            </Link>
-                        </div>
-                    </div> */}
-
                 </div>
 
                 <div className="cart-place-order-btn">
