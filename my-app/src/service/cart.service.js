@@ -14,6 +14,7 @@ const add = async (data) => {
     });
 };
 
+
 const getList = async (id) => {
   const url = `${ENDPOINT}?userId=${id}`;
   return request.get(url).then((res) => {

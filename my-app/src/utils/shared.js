@@ -12,10 +12,10 @@ export const addtoCart = async (book, id) => {
       return { error: false, message: "Item added in cart" };
     })
     .catch((e) => {
-      // if (e.status === 500)
-      //   return { error: true, message: "Item already in the cart" };
-      // else 
-      // return { error: true, message: "something went wrong" };
+      if (e.status === 500)
+        return { error: true, message: "Item already in the cart" };
+      else 
+        return { error: true, message: "something went wrong" };
     });
 };
 

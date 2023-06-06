@@ -24,108 +24,105 @@ function Navigation (){
     const redirect = <Navigate to={RoutePaths.Login}/>
     return (
     <>
-            <ToastContainer />
-            <Routes>
+        <ToastContainer />
+        <Routes>
 
-                <Route exact path={RoutePaths.Login} element={<Login />}/>
+            <Route exact path={RoutePaths.Login} element={<Login />}/>
 
-                <Route 
-                    exact
-                    path={RoutePaths.Register} 
-                    element={<Register />} 
-                />
+            <Route 
+                exact
+                path={RoutePaths.Register} 
+                element={<Register />} 
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.BookListing} 
-                    element={ 
-                        authContext.user.id ? <BookList /> : redirect
-                    } 
-                />
+            <Route 
+                exact
+                path={RoutePaths.BookListing} 
+                element={ 
+                    authContext.user.id ? <BookList /> : redirect
+                } 
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.Book}  
-                    element={
-                        authContext.user.id ? <Book /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.Book}  
+                element={
+                    authContext.user.id ? <Book /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.EditBook}  
-                    element={
-                        authContext.user.id ? <Editbook /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.EditBook}  
+                element={
+                    authContext.user.id ? <Editbook /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.AddBook}  
-                    element={
-                        authContext.user.id ? <Editbook /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.AddBook}  
+                element={
+                    authContext.user.id ? <Editbook /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.User}  
-                    element={
-                        authContext.user.id ? <User /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.User}  
+                element={
+                    authContext.user.id ? <User /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.EditUser}  
-                    element={
-                        authContext.user.id ? <EditUser /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.EditUser}  
+                element={
+                    authContext.user.id ? <EditUser /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.Category}  
-                    element={
-                        authContext.user.id ? <Category /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.Category}  
+                element={
+                    authContext.user.id ? <Category /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.EditCategory}  
-                    element={
-                        authContext.user.id ? <EditCategory /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.EditCategory}  
+                element={
+                    authContext.user.id ? <EditCategory /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.AddCategory}  
-                    element={
-                        authContext.user.id ? <EditCategory /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.AddCategory}  
+                element={
+                    authContext.user.id ? <EditCategory /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.UpdateProfile}  
-                    element={
-                        authContext.user.id ? <UpdateProfile /> : redirect
-                    }
-                />
+            <Route 
+                exact
+                path={RoutePaths.UpdateProfile}  
+                element={
+                    authContext.user.id ? <UpdateProfile /> : redirect
+                }
+            />
 
-                <Route 
-                    exact
-                    path={RoutePaths.Cart} 
-                    element={
-                        // authContext.user.id ? 
-                        <Cart /> 
-                        // : redirect
-                    }
-                />
-            </Routes>
-
+            <Route 
+                exact
+                path={RoutePaths.Cart} 
+                element={
+                    authContext.user.id ? <Cart /> : redirect
+                }
+            />
+        </Routes>
     </>
     )
 }

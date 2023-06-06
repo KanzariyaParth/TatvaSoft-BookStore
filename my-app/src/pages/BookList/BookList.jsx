@@ -115,9 +115,7 @@ const BookList = () => {
     const addToCart = (book) => {
         /* from shared.jsx */
         addtoCart(book, authContext.user.id).then((res) => {
-            if (res.error) {
-                toast.error(res.message, { theme: 'colored' })
-            } else {
+            if (!res.error) {
                 toast.success(res.message, { theme: 'colored' })
                 cartContext.updateCart();
             }
