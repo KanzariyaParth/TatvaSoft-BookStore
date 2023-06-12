@@ -27,7 +27,8 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        padding-top: 10px;
     }
 
         /* .bl-container-bookcount{
@@ -153,7 +154,7 @@
                 }
 
 .bl-pagination-wrapper{
-    margin-top: 30px;
+    margin-top: 4rem;
 }
     .bl-pagination-wrapper ul{
         justify-content: center;

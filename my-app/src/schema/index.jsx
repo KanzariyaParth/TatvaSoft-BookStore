@@ -17,7 +17,7 @@ export const signUpSchema = Yup.object().shape(
       .required("This is a required field"),
     
     password: Yup.string()
-      .min(4)
+      .min(5)
       .max(15)
       .required("Password is a required field"),
     
@@ -43,7 +43,7 @@ export const loginSchema = Yup.object().shape(
     .required("This is a required field"),
 
     password: Yup.string()
-      .min(4)
+      .min(5)
       .max(15)
       .required("Password is a required field"),
   }

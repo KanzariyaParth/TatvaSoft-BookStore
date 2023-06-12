@@ -1,21 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './UpdateProfile.css';
 import { useFormik } from 'formik';
 import { Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext, useAuthContext } from '../../context/auth';
 import * as Yup from "yup";
 import userService from '../../service/user.service';
 import { toast } from 'react-toastify';
 import { messages } from '../../utils/shared';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../State/Slice/authSlice';
 
 
 const UpdateProfile = () => {
 //------------------------------------------------------------------------------------
 
     const navigate = useNavigate();
-    const authContext = useAuthContext();
+    const dispach = useDispatch();
+
+
+    const isSubset = (superObj, subObj) => {
+        return Object.keys(subObj).every((ele) => {
+            return subObj[ele] === superObj[ele]
+        });
+    };
 
     //---------------------------------------------------------------------------st onSubmit
 
@@ -23,10 +31,17 @@ const UpdateProfile = () => {
         const password = values.newPassword ? values.newPassword : user.password;
         delete values.confirmPassword;
         delete values.newPassword;
-        const data = Object.assign(user, { ...values, password});
+        // const data = Object.assign(user, { ...values, password});
+        const data = {...user, ...values, password}
+
+        if (isSubset(user, data)) {
+            toast.info("Change something to update Profile", {theme: 'colored'})
+            return
+        }
+
         const res = await userService.updateProfile(data);
         if (res) {
-            authContext.setUser(res);
+            dispach(setUser(res));
             toast.success(messages.UPDATED_SUCCESS, { theme: 'colored' });
             navigate('/');
         }
@@ -38,7 +53,7 @@ const UpdateProfile = () => {
     //------------------------------------------------------------st Validation
 
     const  [updatePassword, setupdatePassword] = useState(false);
-    const { user } = useContext(AuthContext);
+    const user = useSelector((state) => state.auth.user) //=================================
     const initialValues = {
         firstName: user.firstName,
         lastName: user.lastName,

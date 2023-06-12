@@ -27,7 +27,6 @@ const deleteUser = async (id) => {
 const getById = async (id) => {
     const url = `${ENDPOINT}/byId?id=${id}`;
     return request.get(url).then((res) => {
-        console.log("This is it ==> ",res)
         return res;
     });
 };

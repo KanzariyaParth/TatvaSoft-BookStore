@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Header.css';
 import { Button, ButtonGroup, List, ListItem, TextField } from '@mui/material';
@@ -10,29 +10,45 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import bookService from "../../service/book.service";
 /* st api for search */
 
-import { useAuthContext } from "../../context/auth"; //----------------------------------------------------
 import { NavigationItems, addtoCart } from "../../utils/shared";
 import { RoutePaths } from "../../utils/enum";
 import { toast } from "react-toastify";
-import { useCartContext } from "../../context/cart";
- 
-function Header() {
 
-    const authContext = useAuthContext(); 
-    const cartContext = useCartContext();
+//------------------------------------------------------------------------------
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartData } from "../../State/Slice/cartSlice";
+import { signOut } from "../../State/Slice/authSlice";
+
+//------------------------------------------------------------------------------
+
+function Header() {
+   
     const navigate = useNavigate();
+
+//=================================================================================================================
+
+    const cartData = useSelector((state) => state.cart.cartData);
+    const user = useSelector((state) => state.auth.user)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const userId = user.id;
+
+        if (userId && cartData.length === 0) {
+            dispatch(fetchCartData(userId));
+        }
+    }, [user.id, cartData.length, dispatch]);
+
+    
+//=================================================================================================================
 
     //----------------------------------------------------
 
     const handlelogout = () => {
-        authContext.signOut() //--------------------------------------------
+        dispatch(signOut())
+        navigate(`${RoutePaths.Login}`)
     }
-    const handleLogin = () => {
-        navigate('/login')
-    };
-    const handleRegister = () => {
-        navigate('/register')
-    };
     const handleCansal = () => {
         setOpenSearchResult(false);
     }
@@ -46,12 +62,17 @@ function Header() {
             const res = await bookService.searchBook(query);
             setbookList(res);
             // console.log(res) // to test gloabal search api 
-        } catch (err) {
-            alert('Error occured while searching.  Check the API and try again: ', err)
+        } 
+        catch (err) {
+            toast.info("Please Enter Something to search", { theme: 'colored' })
         }
     };
 
     const search = () => {
+        if (!query.length) {
+            toast.info("Please Enter Something to search", { theme: 'colored' })
+            return;
+        }
         document.body.classList.add("search-result-open");
         searchBook();
         setOpenSearchResult(true)
@@ -60,26 +81,26 @@ function Header() {
     const items = useMemo(() => {
         return NavigationItems.filter(
             (item) => 
-                !item.access.length || item.access.includes(authContext.user.roleId)
+                !item.access.length || item.access.includes(user.roleId)
         );
-    }, [authContext.user])
+    }, [user])
 
     const addToCart = (book) => {
-        if(!authContext.user.id) {
+        if(!user.id) {
             navigate(RoutePaths.Login);
             toast.error("Please Login before adding books to cart", { theme: 'colored' });
         } else {
-            addtoCart(book, authContext.user.id).then((res) => {
+            addtoCart(book, user.id).then((res) => {
                 if(res.error) {
                     toast.error(res.error, {theme: 'colored'});
                 } else {
+                    console.log("cartresult", res)
                     toast.success("Item added in cart", { theme: 'colored' });
-                    cartContext.updateCart();
+                    dispatch(fetchCartData(user.id));
                 }
             })
         }
     }
-
 
     return(
         <>
@@ -87,83 +108,50 @@ function Header() {
         <div className="h-container">
             <div className="h-container-wrapper">
                 <div className="h-container-lft">
-                    <Link to='/'>
-                        <img 
-                            src={addIcon} 
-                            className="h-tt-logo" 
-                            alt="TatvaSoft logo" 
-                        />
-                    </Link>
+                    <div>
+                        <Link to='/'>
+                            <img 
+                                src={addIcon} 
+                                className="h-tt-logo" 
+                                alt="TatvaSoft logo" 
+                            />
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="h-container-rght">
                     
                     <div className="h-log-reg">
                         {/* ----------------------------------- */}
-                        {/* <List> */}
+                        <List>
                         <ButtonGroup 
                             variant="text" 
                             aria-label="text button group"
                         >
-                            {(!authContext.user.id) && (
+                            {(!user.id) && (
                                 <>
-                                {/* <ListItem>
-                                    <Link to={RoutePaths.Register}>
-                                        Register
-                                    </Link>
-                                </ListItem>
-                                <ListItem>
-                                    <Link to={RoutePaths.Login}>
-                                        Login
-                                    </Link>
-                                </ListItem> */}
-
-                                <Button
-                                    className="h-br-1"
-                                    size="small"
-                                    sx={{ 
-                                        color: "#f14d54",
-                                        borderColor: "#f14d54 !important"
-                                    }}
-                                    onClick={handleLogin}
-                                > 
-                                    Login 
-                                </Button>
-                                                    
-                                <Button
-                                    size="small"
-                                    sx={{ 
-                                        color: "#f14d54" 
-                                    }}
-                                    onClick={handleRegister}
-                                > 
-                                    Register 
-                                </Button>
-
+                                    <ListItem>
+                                        <Link to={RoutePaths.Login}>
+                                            Login
+                                        </Link>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Link to={RoutePaths.Register}>
+                                            Register
+                                        </Link>
+                                    </ListItem>
                                 </>
                             )}
                             
                             {items.map((item, index) => (
-                                // <ListItem key={index}>
-                                //     <Link to={item.route} title={item.name}>
-                                //         {item.name}
-                                //     </Link>
-                                // </ListItem>
-
-                                <Link to={item.route} title={item.name}>
-                                    <Button
-                                        size="small"
-                                        sx={{ 
-                                            color: "#f14d54" 
-                                        }}
-                                    > 
-                                        {item.name} 
-                                    </Button>
-                                </Link>
-
+                                <ListItem key={index}>
+                                    <Link to={item.route} title={item.name}>
+                                        {item.name}
+                                    </Link>
+                                </ListItem>
                             ))}
                             </ButtonGroup>
-                        {/* </List> */}
+                        </List>
                         {/* ----------------------------------- */}
                     </div>
 
@@ -175,12 +163,12 @@ function Header() {
                                 className="c-f14d54 b-f14d54"
                                 startIcon={<ShoppingCartIcon />}
                             >
-                                {cartContext.cartData.length} Cart
+                                {cartData.length} Cart
                             </Button>
                         </Link>
                     </div>
 
-                    {(authContext.user.id) ? 
+                    {(user.id) ? 
                         <>
                             <div className="h-rght-logout">
                                 <Button 

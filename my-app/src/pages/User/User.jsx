@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './User.css';
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
-import { useAuthContext } from '../../context/auth';
 import { useNavigate } from 'react-router-dom';
 import userService from '../../service/user.service';
 import ConfirmDialog from '../../components/dialogBox/confirmDialog';
 import { RecordsPerPage, defaultFilter } from '../../constant/constant';
 import { messages } from '../../utils/shared';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 
 const User = () => {
     //-----------------------------------------------------------------------------------
 
-    const authContext = useAuthContext();
+    const user = useSelector((state) => state.auth.user)
     const navigate = useNavigate();
 
     //------------------------------------------------------------st getAllUser
@@ -38,7 +38,6 @@ const User = () => {
     const getAllusers = async (filters) => {
         await userService.getAllUsers(filters).then((res) => {
             if (res) {
-                // console.log('this is it',res); // to check response
                 setUserList(res)
             }
         })
@@ -134,8 +133,8 @@ const User = () => {
                                         key={column.id}
                                         style={{minWidth: column.minWidth}}
                                     >
-                                        <Typography variant="h6">
-                                            <b> {column.label} </b> 
+                                        <Typography variant="h6" className='txt-fw-600'>
+                                            {column.label}
                                         </Typography>
                                     </TableCell>
                                 ))}
@@ -171,7 +170,7 @@ const User = () => {
                                                 </Button>                          
                                             </div> 
 
-                                            {row.id !== authContext.user.id && <div className="u-delete-btn">               
+                                            {row.id !== user.id && <div className="u-delete-btn">               
                                                 <Button 
                                                     variant="outlined"
                                                     className="delete-btn-color delete-btn-border"

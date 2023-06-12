@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Login.css';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
@@ -19,15 +19,51 @@ import { toast } from "react-toastify";
 import authService from "../../service/auth.service";
 /* nd login api */
 
-/* st navigate & authContext */
+/* st navigate & redux-toolkit */
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../context/auth"; //----------------------------------------------------
-/* st navigate & authContext */
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../State/Slice/authSlice";
+import { LocalStorageKeys, hasAccess } from "../../utils/shared";
+import { RoutePaths } from "../../utils/enum";
+/* st navigate & redux-toolkit */
 
 function Login() {
 
     const navigate = useNavigate();
-    const authContext = useAuthContext(); //----------------------------------------------------
+
+//================================================================================================================
+
+    const user = useSelector((state) => state.auth.user)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // const str = JSON.parse(localStorage.getItem(LocalStorageKeys.USER))  ||  initialUserValues;
+        const str = JSON.parse(localStorage.getItem(LocalStorageKeys.USER)) || user
+        if (str.id) {
+            // _setUser(str);
+            dispatch(setUser(str));
+        }
+    }, [])
+
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        if (pathname === RoutePaths.Login && user.id) {
+          navigate(RoutePaths.BookListing);
+        }
+        if (!user.id) {
+          return;
+        }
+
+        const access = hasAccess(pathname, user);
+        if (!access) {
+          toast.warning("Sorry, you are not authorized to access this page" , { theme: 'colored' });
+          navigate(RoutePaths.BookListing);
+          return;
+        }
+    }, [pathname, user]);
+
+//================================================================================================================
 
     const initialValues = {
         email: "",
@@ -35,23 +71,17 @@ function Login() {
     }
 
     const onSubmit = (data, resetForm) => {
-        // console.log(data); 
 
         authService.login(data).then((res) => {
             
             delete res.__v;
             delete res._id;
-            // alert('Before AuthContext.setUser(res)')
-            authContext.setUser(res); //---------------------------------------------------- amd auth.jsx,enum.js,shared.js
-            // alert('AuthContext has been Called...')
-
-            console.log(res);
-            navigate('/');
-            toast.success("Successfully Login", { theme: "colored" })
+            dispatch(setUser(res))
+                navigate('/');
+                toast.success("Successfully Login", { theme: "colored" });
         }).catch((err) => {
             resetForm();
             console.log('inavalid User name and password.')
-            // toast.error("error occured", err, { theme: "colored" })
         })
     }
 
@@ -61,7 +91,6 @@ function Login() {
         onSubmit: (data) => {
             onSubmit(data, handleReset)
         },
-        // () => console.log('Submitted', values),
     });
     
     const breadcrumbs = [
@@ -148,7 +177,7 @@ function Login() {
                                     onChange={ handleChange }
                                     onBlur={ handleBlur }
                                 />
-                                {<p className="l-err-msg"> {/*errors.email &&*/ touched.email && errors.email} </p>}
+                                {<p className="l-err-msg"> {touched.email && errors.email} </p>}
                             </div>
 
                             <div className="l-err-container-2">
@@ -164,7 +193,7 @@ function Login() {
                                     onChange={ handleChange }
                                     onBlur={ handleBlur }
                                 />
-                                {<p className="l-err-msg"> {/*errors.password && */ touched.password && errors.password} </p>}
+                                {<p className="l-err-msg"> {touched.password && errors.password} </p>}
                             </div>
                             <div className="l-submit-btn">
                                 <Button 

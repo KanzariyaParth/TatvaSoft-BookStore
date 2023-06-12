@@ -63,6 +63,7 @@
                 display: flex;
                 flex-direction: column;
                 margin: 2px 0 5px 20px;
+                justify-content: space-between;
             }
 
                 .cart-product-name{
@@ -99,20 +100,21 @@
                 display: flex;
                 flex-direction: column;
                 align-items: end;
+                justify-content: space-between;
             }
                 .cart-container-product-rght h4{
                     margin: 0;
                 }
                 .cart-container-product-rght a{
-                    margin-top: 20px;
+                    margin-bottom: 15px;
                     text-decoration: none;
                     color: #f15d54;
                 }
 
 
-
-
-
 .cart-place-order-btn{
     margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

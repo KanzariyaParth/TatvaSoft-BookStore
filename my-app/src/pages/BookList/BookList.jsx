@@ -7,17 +7,25 @@ import { defaultFilter } from "../../constant/constant";
 import categoryService from "../../service/catagory.service";
 import bookService from "../../service/book.service";
 import { addtoCart } from "../../utils/shared";
-import { useAuthContext } from "../../context/auth";
 import { toast } from "react-toastify";
-import { useCartContext } from "../../context/cart";
+
+
+import { fetchCartData } from "../../State/Slice/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const BookList = () => {
 
+    //=================================================================================================
+
+    const user = useSelector((state) => state.auth.user);
+
+    //=================================================================================================
+
 //----------------------------------------------------- api work -- st
 
-    const authContext = useAuthContext();
-    const cartContext = useCartContext();
+    const dispatch = useDispatch();
+
     const [bookResponse, setBookResponse] = useState({
         pageIndex: 0,
         PageSize: 10,
@@ -26,7 +34,7 @@ const BookList = () => {
         totalItems: 0,
     });
     const [categories, setCategories] = useState([]);
-    const[sortBy, setSortBy] = useState(); //----------------------------- for sorting
+    const[sortBy, setSortBy] = useState();
     const [filters, setFilters] = useState(defaultFilter); 
 
     //-------------------------- st --- to get array of Categories
@@ -59,7 +67,7 @@ const BookList = () => {
     const searchAllBooks = (filters) => {
         bookService.getAll(filters).then((res) => {
             setBookResponse(res);
-            console.log(res) // to get books in consol
+            // console.log(res) // to get books in consol
         });
     }
 
@@ -89,9 +97,7 @@ const BookList = () => {
     const sortBooks = (e) => {
         setSortBy(e.target.value);
 
-        // console.log("sort called")
         const bookList = [...bookResponse.items];
-        // console.log(bookList)
 
         bookList.sort((a, b) => {
             
@@ -113,11 +119,10 @@ const BookList = () => {
     //--------------------------------------------st addToCart
 
     const addToCart = (book) => {
-        /* from shared.jsx */
-        addtoCart(book, authContext.user.id).then((res) => {
+        addtoCart(book, user.id).then((res) => {
             if (!res.error) {
                 toast.success(res.message, { theme: 'colored' })
-                cartContext.updateCart();
+                dispatch(fetchCartData(user.id));
             }
         });
     };
@@ -143,9 +148,9 @@ const BookList = () => {
 
                     <div className="bl-container-bookcount">
                         <h3 
-                            className="txt-lb"
+                            className="txt-lb txt-41"
                         >
-                            Total - {bookResponse.totalItems} items {/* bookResponse.totalItems ==> count */}
+                            Total - {bookResponse.totalItems} items
                         </h3>
                     </div>
                 
@@ -208,7 +213,7 @@ const BookList = () => {
                                 <div className="bl-content">
 
                                     <div className="bl-name txt-41" title={book.name}>
-                                        <h2> {book.name} </h2>
+                                        <h2 className="txt-fw-600"> {book.name} </h2>
                                     </div>
 
                                     <div className="bl-category">

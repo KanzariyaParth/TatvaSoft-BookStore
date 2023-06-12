@@ -39,6 +39,7 @@ const removeItem = async (id) => {
   return request
     .delete(url)
     .then((res) => {
+      console.log('from remove Item ==> ', res)
       return res;
     })
     .catch((e) => {

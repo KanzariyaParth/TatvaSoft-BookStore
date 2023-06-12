@@ -4,16 +4,17 @@ import { useFormik } from 'formik';
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import userService from '../../../service/user.service';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuthContext } from '../../../context/auth';
 import { toast } from 'react-toastify';
 import { messages } from '../../../utils/shared';
 import { editUserSchema } from '../../../schema';
+import { useDispatch, useSelector } from 'react-redux';
 
 const EditUser = () => {
 //---------------------------------------------------------------------------
 
     const navigate = useNavigate();
-    const authContext = useAuthContext();
+    const loggedUser = useSelector((state) => state.auth.user)
+    const dispatch = useDispatch();
     const [user, setUser] = useState();
     
     //-----------------------------------------------st getRoles
@@ -44,7 +45,7 @@ const EditUser = () => {
                 lastName: user.lastName,
                 firstName: user.firstName,
                 roleId,
-                // password: user.password,  // ----
+                password: user.password,  // ----
             })
         }
     }, [user, roles]);
@@ -81,6 +82,7 @@ const EditUser = () => {
             .update(updatedValue)
             .then((res) => {
                 if (res) {
+                    dispatch(setUser(updatedValue))
                     toast.success(messages.UPDATED_SUCCESS, { theme: 'colored' } )
                     navigate('/user')
                 }
@@ -188,7 +190,7 @@ const EditUser = () => {
                         </div>
                     </div>
                     <div className="edit-u-2in1-x-err">
-                        {values.id !== authContext.user.id &&
+                        {values.id !== loggedUser.id &&
                             <div>
                                 <FormControl
                                     variant="standard"  

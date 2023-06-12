@@ -60,12 +60,14 @@ request.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 function showLoader() {
   document.body.classList.add("loader-open");
 }
 function hideLoader() {
   document.body.classList.remove("loader-open");
 }
+
 // remove completed request
 function removeRequest(req) {
   const i = requests.indexOf(req);

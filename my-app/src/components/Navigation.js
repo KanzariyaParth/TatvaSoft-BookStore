@@ -11,17 +11,16 @@ import EditUser from '../pages/User/editUser/editUser';
 import Category from '../pages/category/Category';
 import EditCategory from '../pages/category/Edit-Category/EditCategory';
 import UpdateProfile from '../pages/update-profile/UpdateProfile';
-
-    import Cart from '../pages/Cart/Cart';
+import Cart from '../pages/Cart/Cart';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuthContext } from '../context/auth';
+import { useSelector } from 'react-redux';
 
 
 function Navigation (){
-    const authContext = useAuthContext();
     const redirect = <Navigate to={RoutePaths.Login}/>
+    const user = useSelector((state) => state.auth.user)
     return (
     <>
         <ToastContainer />
@@ -39,7 +38,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.BookListing} 
                 element={ 
-                    authContext.user.id ? <BookList /> : redirect
+                    user.id ? <BookList /> : redirect
                 } 
             />
 
@@ -47,7 +46,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.Book}  
                 element={
-                    authContext.user.id ? <Book /> : redirect
+                    user.id  ? <Book /> : redirect
                 }
             />
 
@@ -55,7 +54,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.EditBook}  
                 element={
-                    authContext.user.id ? <Editbook /> : redirect
+                    user.id ? <Editbook /> : redirect
                 }
             />
 
@@ -63,7 +62,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.AddBook}  
                 element={
-                    authContext.user.id ? <Editbook /> : redirect
+                    user.id ? <Editbook /> : redirect
                 }
             />
 
@@ -71,7 +70,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.User}  
                 element={
-                    authContext.user.id ? <User /> : redirect
+                    user.id ? <User /> : redirect
                 }
             />
 
@@ -79,7 +78,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.EditUser}  
                 element={
-                    authContext.user.id ? <EditUser /> : redirect
+                    user.id ? <EditUser /> : redirect
                 }
             />
 
@@ -87,7 +86,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.Category}  
                 element={
-                    authContext.user.id ? <Category /> : redirect
+                    user.id ? <Category /> : redirect
                 }
             />
 
@@ -95,7 +94,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.EditCategory}  
                 element={
-                    authContext.user.id ? <EditCategory /> : redirect
+                    user.id ? <EditCategory /> : redirect
                 }
             />
 
@@ -103,7 +102,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.AddCategory}  
                 element={
-                    authContext.user.id ? <EditCategory /> : redirect
+                    user.id ? <EditCategory /> : redirect
                 }
             />
 
@@ -111,7 +110,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.UpdateProfile}  
                 element={
-                    authContext.user.id ? <UpdateProfile /> : redirect
+                    user.id ? <UpdateProfile /> : redirect
                 }
             />
 
@@ -119,7 +118,7 @@ function Navigation (){
                 exact
                 path={RoutePaths.Cart} 
                 element={
-                    authContext.user.id ? <Cart /> : redirect
+                    user.id ? <Cart /> : redirect
                 }
             />
         </Routes>

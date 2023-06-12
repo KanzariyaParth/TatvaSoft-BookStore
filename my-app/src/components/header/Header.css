@@ -25,10 +25,35 @@
     flex-direction: row;
     width: auto; /* 25 */
     justify-content: space-between;
+    padding-bottom: 10px;
 }
-.h-container-rght .h-rght-cart{
-    margin: 0 10px;
-}
+    .h-log-reg{
+        height: 100%;
+    }
+        .h-log-reg div{
+            height: 100%;
+            align-items: center;
+        }
+            .h-log-reg li{
+                padding: 0 10px;
+                border-right: 1px solid #f14d54;
+                line-height: 21px;
+            }
+            .h-log-reg li:last-child{
+                border: 0;
+                margin-right: 5px;
+            }
+                .h-log-reg li a{
+                    white-space: nowrap;
+                    text-decoration: none;
+                    color: #f14d54;
+                }
+
+    .h-rght-cart, .h-rght-logout {
+        display: flex;
+        align-items: center;
+        margin: 0 4px;
+    }
 
 /* for search bar bg */
 
